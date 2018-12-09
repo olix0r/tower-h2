@@ -23,7 +23,7 @@ where S: MakeService<(), Request<RecvBody>>,
     new_service: S,
     builder: h2::server::Builder,
     executor: E,
-    _p: PhantomData<B>,
+    _p: PhantomData<fn() -> B>,
 }
 
 /// Drives connection-level I/O .
