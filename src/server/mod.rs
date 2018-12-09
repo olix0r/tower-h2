@@ -124,7 +124,7 @@ impl<S, E, B> Server<S, E, B>
 where
     S: MakeService<(), Request<RecvBody>, Response = Response<B>>,
     B: Body + 'static,
-    E: Clone
+    E: Clone + Send
         + Executor<Background<<S::Service as Service<Request<RecvBody>>>::Future, B>>,
 {
     pub fn new(new_service: S, builder: h2::server::Builder, executor: E) -> Self {
